@@ -1,0 +1,23 @@
+{
+  "name": "eris-backup",
+  "version": "1.0.0",
+  "description": "A package that allows your discord bot to facilitate server backup. (Uses mongodb)",
+  "main": "index.js",
+  "repository": {"type": "git", "url": "https://github.com/chris8889/eris-backup"},
+  "keywords": [
+    "eris",
+    "backup",
+    "clone",
+    "bot",
+    "server",
+    "eris-backup"
+  ],
+  "author": "chris8889",
+  "license": "MIT",
+  "dependencies": {
+    "filesize": "^6.3.0",
+    "node-fetch": "^2.6.7",
+    "snowflake-util": "^1.0.1",
+    "quickmongo": "^3.0.2"
+  }
+}
