@@ -1,5 +1,5 @@
 var Snowflake = require(`snowflake-util`);
-var {Database} = require(`quickmongo`);
+var {MongoDB} = require(`chris.db`);
 var SnowflakeUtil = new Snowflake();
 var createMaster = require(`./create`);
 var loadMaster = require(`./load`);
@@ -93,8 +93,8 @@ var fetch = async function (backupID) {
     } else {throw new Error(`No backup found`)};
 };
 
-var connectToDatabase = async function (uri) {
-    db = new Database(uri, `backups`, {useUnifiedTopology: true, maxPoolSize: os.cpus().length * 5, minPoolSize: os.cpus().length});
+var connectToDatabase = async function (uri, collection = `backups`) {
+    db = new MongoDB(uri, collection);
 };
 
 exports.load = load;
