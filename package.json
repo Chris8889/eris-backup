@@ -15,9 +15,9 @@
   "author": "chris8889",
   "license": "MIT",
   "dependencies": {
+    "chris.db": "^3.0.1",
     "filesize": "^6.3.0",
     "node-fetch": "^2.6.7",
-    "snowflake-util": "^1.0.1",
-    "quickmongo": "^3.0.2"
+    "snowflake-util": "^1.0.1"
   }
 }
