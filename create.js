@@ -72,7 +72,8 @@ var getChannels = async function (guild) {
 
     var channels = {categories: [], others: []};
     const types = {0: `GUILD_TEXT`, 1: `DM`, 2: `GUILD_VOICE`, 3: `GROUP_DM`, 4: `GUILD_CATEGORY`, 5: `GUILD_NEWS`, 6: `GUILD_STORE`, 7: ``, 8: ``, 9: ``, 10: `GUILD_NEWS_THREAD`, 11: `GUILD_PUBLIC_THREAD`, 12: `GUILD_PRIVATE_THREAD`, 13: `GUILD_STAGE_VOICE`};
-    var categories, categoryData, children, others;
+    let categories, children, others;
+    const categoryData = null;
 
     categories = guild.channels.filter(channel => types[channel.type] == `GUILD_CATEGORY`).sort(function (a, b) {return a.position - b.position});
     await categories.forEach(async category => {
