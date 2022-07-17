@@ -1,6 +1,6 @@
 {
   "name": "eris-backup",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A package that allows your discord bot to facilitate server backup. (Uses mongodb)",
   "main": "index.js",
   "repository": {"type": "git", "url": "https://github.com/chris8889/eris-backup"},
