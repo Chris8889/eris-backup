@@ -70,15 +70,13 @@ var getChannels = async function (guild) {
         }; return channelData;
     };
 
-    var channels = {categories: [], others: []};
-    const types = {0: `GUILD_TEXT`, 1: `DM`, 2: `GUILD_VOICE`, 3: `GROUP_DM`, 4: `GUILD_CATEGORY`, 5: `GUILD_NEWS`, 6: `GUILD_STORE`, 7: ``, 8: ``, 9: ``, 10: `GUILD_NEWS_THREAD`, 11: `GUILD_PUBLIC_THREAD`, 12: `GUILD_PRIVATE_THREAD`, 13: `GUILD_STAGE_VOICE`};
-    let categories, children, others;
-    const categoryData = null;
+    let channels = {categories: [], others: []};
+    let types = {0: `GUILD_TEXT`, 1: `DM`, 2: `GUILD_VOICE`, 3: `GROUP_DM`, 4: `GUILD_CATEGORY`, 5: `GUILD_NEWS`, 6: `GUILD_STORE`, 7: ``, 8: ``, 9: ``, 10: `GUILD_NEWS_THREAD`, 11: `GUILD_PUBLIC_THREAD`, 12: `GUILD_PRIVATE_THREAD`, 13: `GUILD_STAGE_VOICE`};
 
-    categories = guild.channels.filter(channel => types[channel.type] == `GUILD_CATEGORY`).sort(function (a, b) {return a.position - b.position});
+    let categories = guild.channels.filter(channel => types[channel.type] == `GUILD_CATEGORY`).sort(function (a, b) {return a.position - b.position});
     await categories.forEach(async category => {
-        categoryData = {name: category.name, permissions: await fetchChannelPermissions(category), children: []};
-        children = category.channels.filter(channel => channel).sort(function (a, b) {return a.position - b.position});
+        let categoryData = {name: category.name, permissions: await fetchChannelPermissions(category), children: []};
+        let children = category.channels.filter(channel => channel).sort(function (a, b) {return a.position - b.position});
 
         await children.forEach(async child => {
             if (child.type == 0 || child.type == 5) categoryData.children.push(await fetchTextChannelData(child));
@@ -86,7 +84,7 @@ var getChannels = async function (guild) {
         }); channels.categories.push(categoryData);
     });
 
-    others = guild.channels.filter(ch => !ch.parentID && ch.type != 4 && ch.type != 6 && ch.type != 10 && ch.type != 12 && ch.type != 11).sort(function (a, b) {return a.position - b.position});
+    let others = guild.channels.filter(ch => !ch.parentID && ch.type != 4 && ch.type != 6 && ch.type != 10 && ch.type != 12 && ch.type != 11).sort(function (a, b) {return a.position - b.position});
     await others.forEach(async channel => {
         if (channel.type == 0 || channel.type == 5) channels.others.push(await fetchTextChannelData(channel));
         else channels.others.push(await fetchVoiceChannelData(channel));
